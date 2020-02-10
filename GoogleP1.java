@@ -1,5 +1,6 @@
 
 import java.io.File;
+import java.io.PrintWriter;
 import java.util.*;
 
 /**
@@ -23,7 +24,7 @@ public class GoogleP1 {
                 if (_act.isPerfect()) {
                     _isPerfect = true;
                     _better = new BestKnownSolution(_act); // We save the first solution found as better
-                    System.out.println("perfect solution");
+                    //System.out.println("perfect solution");
                     _found = true;
                 }
                 if (!_act.isComplete(candidate)) {
@@ -46,53 +47,63 @@ public class GoogleP1 {
 
     public static void main(String[] args) {
         // Open the file, read its contents, and save it to a data structure
-        String filename;
-        Scanner keyb = new Scanner(System.in);
-        filename = keyb.nextLine();
-        List<Integer> pizzas = new ArrayList<>();
-        int maxSlices = 0, nPizzas = 0;
-        _found = false;
-        _isPerfect = false;
-        try {
-            Scanner reader = new Scanner(new File(filename));
-            maxSlices = reader.nextInt();
-            nPizzas = reader.nextInt();
-            for (int i = 0; i < nPizzas; i++) {
-                pizzas.add(i, reader.nextInt());
-            }
-            reader.close();
-            System.out.println("Max number of slices: " + maxSlices + "\nTypes of pizza: " + nPizzas);
-            int total = 0;
-            for (int i = 0; i < nPizzas; i++) {
-                int nSlices = pizzas.get(i);
-                System.out.println("[" + i + "]" + nSlices);
-                total += nSlices;
-            }
-            System.out.println("Total: " + total);
+        //String[] filenames={"a_example", "b_small", "c_medium", "d_quite_big", "e_also_big"};
+        String fileName="e_also_big";
+            //List<Integer> input = new ArrayList<>();
+            //List<Integer> output = new ArrayList<>();
+            List<Integer> pizzas = new ArrayList<>();
+            int maxSlices = 0, nPizzas = 0;
+            _found = false;
+            _isPerfect = false;
+            try {
+                Scanner reader = new Scanner(new File(fileName + ".in"));
+                maxSlices = reader.nextInt();
+                nPizzas = reader.nextInt();
+                for (int i = 0; i < nPizzas; i++) {
+                    pizzas.add(i, reader.nextInt());
+                }
+                reader.close();
+                //System.out.println("Max number of slices: " + maxSlices + "\nTypes of pizza: " + nPizzas);
+                int total = 0;
+                for (int i = 0; i < nPizzas; i++) {
+                    int nSlices = pizzas.get(i);
+                    //System.out.println("[" + i + "]" + nSlices);
+                    total += nSlices;
+                }
+                //System.out.println("Total: " + total);
 
-        } catch (Exception e) {
-            System.err.format("Exception occurred trying to read '%s'.", filename);
-        }
-        Integer candidate = nPizzas - 1; //Index to our candidate list ( pizzas )
-        Integer nSolutions = 0;
-        _act = new BestKnownSolution(nPizzas, maxSlices, pizzas);
-        backtrackingAlgo(maxSlices, nPizzas, pizzas, candidate, nSolutions);
-
-        if (_found) {
-            System.out.println("Soluions found with score: " + _better.getScore());
-            List<Integer> solution = _better.getSolution();
-            Collections.reverse(solution);
-            int j = 0;
-            for (Integer i : solution) {
-                System.out.print(i + " ");
-                j++;
-                if (j > 40) { System.out.println(); j = 0; }
+            } catch (Exception e) {
+                System.err.format("Exception occurred trying to read '%s'.", fileName);
             }
-            System.out.println();
-        }
+            Integer candidate = nPizzas - 1; //Index to our candidate list ( pizzas )
+            Integer nSolutions = 0;
+            _act = new BestKnownSolution(nPizzas, maxSlices, pizzas);
+            backtrackingAlgo(maxSlices, nPizzas, pizzas, candidate, nSolutions);
+
+            if (_found) {
+                System.out.println("Solutions found with score: " + _better.getScore());
+                List<Integer> solution = _better.getSolution();
+                Collections.reverse(solution);
+                System.out.println(fileName);
+                int j = 0;
+                try( PrintWriter outputFile = new PrintWriter(fileName+".out", "UTF-8")){
+                    System.out.println(solution.size());
+                    outputFile.println(solution.size());
+                    for (Integer i : solution) {
+                        System.out.print(i + " ");
+                        outputFile.print(i + " ");
+                        j++;
+                    }
+                }catch (Exception e){
+                    System.err.format("Exception occurred trying to write output");
+                }
+
+                System.out.flush();
+                //System.out.println();
+            }
+            else{
+                System.out.println("No he trobat solució");
+            }
+
     }
 }
-//Aixo es una proba feta per en ventura
-//Aixo es una segona proba feta per en ventura3453453
-//aj;slkdfja;slkfjd;ldsakjf;lskdajf;lkdsajf;lksadjf;lksajf;ldksaj
-

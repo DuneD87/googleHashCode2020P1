@@ -15,14 +15,14 @@ public class BestKnownSolution {
     private final long _maxSlices;//!< Max slices allowed
     private final int _threshold = 100;
     private int _maxPizzaSlice;
-    
+
     /**CONTROL ATRIBUTES**/
     private int _score;//!< Current score
     private Stack<Integer> _pizzasChosen;//!< List of the pizzas chosen
     private List<Boolean> _canBeChoosen;
     private long  _thresholdMax;
     //private int _recursiveLevel;//!< Current level of recursion
-    
+
     /**
      * @brief Class constructor
      */
@@ -40,24 +40,25 @@ public class BestKnownSolution {
         for (Integer p : _pizzas)
             if (p > _maxPizzaSlice) _maxPizzaSlice = p;
         _thresholdMax = (_maxSlices * _threshold) / 100;
-        System.out.println("Starting backtracking algorithm\n" +
-                "maxSlices = " + _maxSlices + "\nthresholdMax = " + _thresholdMax);
+        //System.out.println("Starting backtracking algorithm\n" +
+        //        "maxSlices = " + _maxSlices + "\nthresholdMax = " + _thresholdMax);
     }
-    
+
     /**
      * @brief Copy constructor
      * @post Copies all the variables from the old solution to the new solution
      */
     public BestKnownSolution(BestKnownSolution oldSolution) {
-       _pizzas = new ArrayList<>(oldSolution._pizzas);
-       _nPizzas = oldSolution._nPizzas;
-       _maxSlices = oldSolution._maxSlices;
+      
+        _pizzas = new ArrayList<>(oldSolution._pizzas);
+        _nPizzas = oldSolution._nPizzas;
+        _maxSlices = oldSolution._maxSlices;
 
-       _score = oldSolution._score;
-       _canBeChoosen = new ArrayList<>(oldSolution._canBeChoosen);
-       _pizzasChosen = (Stack<Integer>)oldSolution._pizzasChosen.clone();
+        _score = oldSolution._score;
+        _canBeChoosen = new ArrayList<>(oldSolution._canBeChoosen);
+        _pizzasChosen = (Stack<Integer>)oldSolution._pizzasChosen.clone();
     }
-    
+  
     /**
      * @brief Tells us if the candidate is acceptable
      * @return True if the number of slices of this candidate and the current number of slices is equal or lower than maxSlices, false otherwise
@@ -67,7 +68,7 @@ public class BestKnownSolution {
         if (_pizzas.get(candidate) + _score <= _maxSlices && _canBeChoosen.get(candidate)) acceptable = true;
         return acceptable;
     }
-    
+
     /**
      * @brief Tells us if the solution is complete
      * @return True if the recursive level has tried all candidates, false otherwise
@@ -75,10 +76,11 @@ public class BestKnownSolution {
     public boolean isComplete(int candidate) {
         boolean complete = false;
         //System.out.println("Pizzas chosen = " + _pizzasChosen.size() + "\n Max pizzas = " + _nPizzas);
-        if (_pizzasChosen.size() == _nPizzas) complete = true;
+        if (_pizzasChosen.size() == _nPizzas -1) complete = true;
+
         return complete;
     }
-    
+
     /**
      * @brief Adds a candidate to our solution
      * @post A candidate has been added to our solution, the total score has been updated and the recursive level has been increased by 1
@@ -116,9 +118,8 @@ public class BestKnownSolution {
         _score -= _pizzas.get(candidate);
         _canBeChoosen.set(candidate, true);
 
-      
     }
-    
+
     /**
      * @brief Gives us the problem solution
      * @return A list of integers telling us the type of pizzas chosen
@@ -126,7 +127,7 @@ public class BestKnownSolution {
     public Stack<Integer> getSolution() {
         return _pizzasChosen;
     }
-    
+
     /**
      * @brief Tells us if the current solution is better than the old one
      * @return True if the solution is better, false otherwise
@@ -140,4 +141,4 @@ public class BestKnownSolution {
     public int getScore() {
         return _score;
     }
-}
+
