@@ -94,4 +94,3 @@ public class GoogleP1 {
 }
 //Aixo es una proba feta per en ventura
 //Aixo es una segona proba feta per en ventura3453453
-//aj;slkdfja;slkfjd;ldsakjf;lskdajf;lkdsajf;lksadjf;lksajf;ldksaj
