@@ -75,7 +75,7 @@ public class BestKnownSolution {
     public boolean isComplete(int candidate) {
         boolean complete = false;
         //System.out.println("Pizzas chosen = " + _pizzasChosen.size() + "\n Max pizzas = " + _nPizzas);
-        if (_pizzasChosen.size() == _nPizzas) complete = true;
+        if (_pizzasChosen.size() == _nPizzas -1) complete = true;
         return complete;
     }
 

@@ -43,14 +43,12 @@ public class GoogleP1 {
             }
             candidate--;
         }
-
     }
 
     public static void main(String[] args) {
         // Open the file, read its contents, and save it to a data structure
-        String[] filenames={"a_example", "b_small", "c_medium", "d_quite_big", "e_also_big"};
-
-        for(String fileName: filenames){
+        //String[] filenames={"a_example", "b_small", "c_medium", "d_quite_big", "e_also_big"};
+        String fileName="e_also_big";
             //List<Integer> input = new ArrayList<>();
             //List<Integer> output = new ArrayList<>();
             List<Integer> pizzas = new ArrayList<>();
@@ -83,7 +81,7 @@ public class GoogleP1 {
             backtrackingAlgo(maxSlices, nPizzas, pizzas, candidate, nSolutions);
 
             if (_found) {
-                //System.out.println("Solutions found with score: " + _better.getScore());
+                System.out.println("Solutions found with score: " + _better.getScore());
                 List<Integer> solution = _better.getSolution();
                 Collections.reverse(solution);
                 System.out.println(fileName);
@@ -95,10 +93,6 @@ public class GoogleP1 {
                         System.out.print(i + " ");
                         outputFile.print(i + " ");
                         j++;
-                        if (j > 40) {
-                            System.out.println(); j = 0;
-                            outputFile.println(i + " ");
-                        }
                     }
                 }catch (Exception e){
                     System.err.format("Exception occurred trying to write output");
@@ -107,7 +101,9 @@ public class GoogleP1 {
                 System.out.flush();
                 //System.out.println();
             }
-        }
+            else{
+                System.out.println("No he trobat solució");
+            }
 
     }
 }
