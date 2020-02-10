@@ -49,6 +49,7 @@ public class BestKnownSolution {
      * @post Copies all the variables from the old solution to the new solution
      */
     public BestKnownSolution(BestKnownSolution oldSolution) {
+      
         _pizzas = new ArrayList<>(oldSolution._pizzas);
         _nPizzas = oldSolution._nPizzas;
         _maxSlices = oldSolution._maxSlices;
@@ -57,7 +58,7 @@ public class BestKnownSolution {
         _canBeChoosen = new ArrayList<>(oldSolution._canBeChoosen);
         _pizzasChosen = (Stack<Integer>)oldSolution._pizzasChosen.clone();
     }
-
+  
     /**
      * @brief Tells us if the candidate is acceptable
      * @return True if the number of slices of this candidate and the current number of slices is equal or lower than maxSlices, false otherwise
@@ -76,6 +77,7 @@ public class BestKnownSolution {
         boolean complete = false;
         //System.out.println("Pizzas chosen = " + _pizzasChosen.size() + "\n Max pizzas = " + _nPizzas);
         if (_pizzasChosen.size() == _nPizzas -1) complete = true;
+
         return complete;
     }
 
@@ -116,7 +118,6 @@ public class BestKnownSolution {
         _score -= _pizzas.get(candidate);
         _canBeChoosen.set(candidate, true);
 
-
     }
 
     /**
@@ -140,4 +141,4 @@ public class BestKnownSolution {
     public int getScore() {
         return _score;
     }
-}
+
