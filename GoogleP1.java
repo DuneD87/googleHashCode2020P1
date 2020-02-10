@@ -109,3 +109,5 @@ public class GoogleP1 {
 }
 //Aixo es una proba feta per en ventura
 //Aixo es una segona proba feta per en ventura3453453
+///JAJAJAJAJAJAJAJAJJAJAJAJAJAJ
+//em cagare en la merda de ide
