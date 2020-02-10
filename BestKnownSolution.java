@@ -40,8 +40,8 @@ public class BestKnownSolution {
         for (Integer p : _pizzas)
             if (p > _maxPizzaSlice) _maxPizzaSlice = p;
         _thresholdMax = (_maxSlices * _threshold) / 100;
-        System.out.println("Starting backtracking algorithm\n" +
-                "maxSlices = " + _maxSlices + "\nthresholdMax = " + _thresholdMax);
+        //System.out.println("Starting backtracking algorithm\n" +
+        //        "maxSlices = " + _maxSlices + "\nthresholdMax = " + _thresholdMax);
     }
 
     /**
